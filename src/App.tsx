@@ -1,13 +1,11 @@
-import { useState } from 'react'
+import { increament } from './app/features/counterSlice'
+import { useAppDispatch, useCounterSelector } from './app/hooks'
 
 const App = () => {
-  const [count, setCount] = useState<number>(0)
+  const dispatch = useAppDispatch()
+  const { count } = useCounterSelector()
 
-  function increament() {
-    setCount((prev) => prev + 1)
-  }
-
-  return <button onClick={increament}>Count is {count}</button>
+  return <button onClick={() => dispatch(increament())}>Count is {count}</button>
 }
 
 export default App

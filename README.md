@@ -1,50 +1,95 @@
-# React + TypeScript + Vite
+# React + TypeScript Template Repository
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository serves as a clean and reusable template for React projects built with TypeScript. It includes essential configurations and an example to help you get started quickly.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: Strongly typed JavaScript for better developer experience.
+- **Redux Toolkit**: Integrated state management with an example counter feature.
+- **React Router**: Preconfigured routing for navigation.
+- **Prettier**: Code formatting enforced for consistency.
+- **ESLint**: Static code analysis to find and fix issues.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Ensure you have the following installed:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- [Node.js](https://nodejs.org/) (v16 or above recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Using the Template
+
+1. **Click on the "Use this template" Button**
+   At the top-right area of the GitHub repository page, click the "Use this template" button to create a new repository based on this template.
+
+2. **Clone Your New Repository**
+
+   ```bash
+   git clone <your-repository-url>
+   cd <your-repository-name>
+   ```
+
+3. **Install Dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   bun install
+   ```
+
+4. **Start the Development Server**
+
+   ```bash
+   npm run dev
+   # or
+   yarn run dev
+   # or
+   bun run dev
+   ```
+
+   Your application will be running at `http://localhost:5173`.
+
+## Project Structure
+
+```plaintext
+.
+├── src
+│   ├── app         # Redux store setup
+│   ├── features    # Feature-specific code (e.g., counter)
+│   ├── pages       # Page components for routing
+│   └── main.tsx   # Application entry point
+├── eslint.config.json  # ESLint configuration
+├── .prettierrc     # Prettier configuration
+├── tsconfig.json   # TypeScript configuration
+└── README.md       # Project documentation
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Counter Example
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+This template includes an example counter component using Redux Toolkit. To see it in action:
+
+1. Navigate to the `/counter` route in your application.
+2. Increment the counter using the buttons.
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Submit a pull request with a detailed explanation of your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Feel free to use this repository as a starting point for your projects. If you find it helpful, give it a star ⭐ and share it with others!

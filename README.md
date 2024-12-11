@@ -75,7 +75,7 @@ Ensure you have the following installed:
 
 This template includes an example counter component using Redux Toolkit. To see it in action:
 
-1. Navigate to the `/counter` route in your application.
+1. Navigate to the `http://localhost:5173` in your application.
 2. Increment the counter using the buttons.
 
 ## Contributing

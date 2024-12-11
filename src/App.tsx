@@ -1,11 +1,9 @@
-import { increament } from './app/features/counterSlice'
-import { useAppDispatch, useCounterSelector } from './app/hooks'
+import { RouterProvider } from 'react-router-dom'
+
+import { routes } from './app/routes'
 
 const App = () => {
-  const dispatch = useAppDispatch()
-  const { count } = useCounterSelector()
-
-  return <button onClick={() => dispatch(increament())}>Count is {count}</button>
+  return <RouterProvider router={routes} />
 }
 
 export default App

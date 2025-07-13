@@ -1,95 +1,69 @@
-# React + TypeScript Template Repository
+# React + TypeScript + Vite
 
-This repository serves as a clean and reusable template for React projects built with TypeScript. It includes essential configurations and an example to help you get started quickly.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **React**: A JavaScript library for building user interfaces.
-- **TypeScript**: Strongly typed JavaScript for better developer experience.
-- **Redux Toolkit**: Integrated state management with an example counter feature.
-- **React Router**: Preconfigured routing for navigation.
-- **Prettier**: Code formatting enforced for consistency.
-- **ESLint**: Static code analysis to find and fix issues.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Getting Started
+## Expanding the ESLint configuration
 
-### Prerequisites
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-Ensure you have the following installed:
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-- [Node.js](https://nodejs.org/) (v16 or above recommended)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-### Using the Template
-
-1. **Click on the "Use this template" Button**
-   At the top-right area of the GitHub repository page, click the "Use this template" button to create a new repository based on this template.
-
-2. **Clone Your New Repository**
-
-   ```bash
-   git clone <your-repository-url>
-   cd <your-repository-name>
-   ```
-
-3. **Install Dependencies**
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   bun install
-   ```
-
-4. **Start the Development Server**
-
-   ```bash
-   npm run dev
-   # or
-   yarn run dev
-   # or
-   bun run dev
-   ```
-
-   Your application will be running at `http://localhost:5173`.
-
-## Project Structure
-
-```plaintext
-.
-├── src
-│   ├── app         # Redux store setup
-│   ├── features    # Feature-specific code (e.g., counter)
-│   ├── pages       # Page components for routing
-│   └── main.tsx   # Application entry point
-├── eslint.config.json  # ESLint configuration
-├── .prettierrc     # Prettier configuration
-├── tsconfig.json   # TypeScript configuration
-└── README.md       # Project documentation
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## Usage
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### Counter Example
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-This template includes an example counter component using Redux Toolkit. To see it in action:
-
-1. Navigate to the `http://localhost:5173` in your application.
-2. Increment the counter using the buttons.
-
-## Contributing
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or fix.
-3. Submit a pull request with a detailed explanation of your changes.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to use this repository as a starting point for your projects. If you find it helpful, give it a star ⭐ and share it with others!
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
